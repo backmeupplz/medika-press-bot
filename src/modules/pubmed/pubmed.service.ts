@@ -1,14 +1,11 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { InjectBot } from 'nestjs-telegraf';
-import { TelegrafContext } from 'src/interfaces/telegraf-context.interface';
 import { shuffle } from 'lodash';
 import { MessageService } from '../message/message.service';
 
 @Injectable()
 export class PubmedService {
   constructor(
-    @InjectBot() private readonly bot: TelegrafContext,
     private readonly httpService: HttpService,
     private readonly messageService: MessageService,
   ) {}
