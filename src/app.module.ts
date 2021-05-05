@@ -5,6 +5,7 @@ import { TelegrafModule } from 'nestjs-telegraf';
 import { PubmedModule } from './modules/pubmed/pubmed.module';
 import { MessageService } from './modules/message/message.service';
 import { MessageModule } from './modules/message/message.module';
+import { AppUpdate } from './app.update';
 
 @Module({
   imports: [
@@ -20,6 +21,6 @@ import { MessageModule } from './modules/message/message.module';
     PubmedModule,
     MessageModule,
   ],
-  providers: [MessageService],
+  providers: [MessageService, AppUpdate],
 })
 export class AppModule {}
