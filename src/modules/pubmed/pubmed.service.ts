@@ -21,7 +21,7 @@ export class PubmedService {
       const shuffledArticlesId = shuffle(articlesIds);
       const articlesToPublish = shuffledArticlesId.splice(0, 5);
       articlesToPublish.forEach(async (id: string) => {
-        this.messageService.sendMessage(id);
+        await this.messageService.sendMessage(id);
       });
     } catch (error) {
       console.log(error);
