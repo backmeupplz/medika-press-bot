@@ -10,10 +10,11 @@ export class MessageService {
     private readonly configService: ConfigService,
   ) {}
 
-  async sendMessage(id: string) {
-    await this.bot.telegram.sendMessage(
+  sendMessage(text: string) {
+    return this.bot.telegram.sendMessage(
       this.configService.get<string>('CHAT_ID'),
-      `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
+      text,
+      { parse_mode: 'Markdown' },
     );
   }
 }
