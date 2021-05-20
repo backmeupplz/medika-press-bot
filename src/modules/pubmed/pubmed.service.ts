@@ -11,7 +11,7 @@ import { MessageService } from '../message/message.service';
 export class PubmedService {
   constructor(private readonly messageService: MessageService) {}
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
+  @Cron(CronExpression.EVERY_DAY_AT_8PM)
   async publishArticles() {
     try {
       // Get articles
