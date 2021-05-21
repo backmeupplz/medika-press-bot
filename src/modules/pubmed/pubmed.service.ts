@@ -11,7 +11,7 @@ import { MessageService } from '../message/message.service';
 export class PubmedService {
   constructor(private readonly messageService: MessageService) {}
 
-  @Cron(CronExpression.EVERY_DAY_AT_8PM)
+  @Cron(CronExpression.EVERY_10_SECONDS)
   async publishArticles() {
     try {
       // Get articles
@@ -27,10 +27,12 @@ export class PubmedService {
         articlesTitles.push(title);
       }
       // Publish them
-      let publishText = '👋 Новые статьи на сегодня (неделя COVID-19):\n\n';
+      let publishText =
+        'Новые #PubMed статьи на сегодня (неделя COVID-19):\n\n';
       for (let i = 0; i < 3; i++) {
-        publishText += `📖 *${articlesTitles[i]}*\n🌐 https://pubmed.ncbi.nlm.nih.gov/${articlesId[i]}/\n\n`;
+        publishText += `${articlesTitles[i]}\n🌐 https://pubmed.ncbi.nlm.nih.gov/${articlesId[i]}/\n\n`;
       }
+      publishText += '<i>подготовлено @MedikaPressBot</i>';
       await this.messageService.sendMessage(publishText);
     } catch (error) {
       console.log(error);
@@ -52,6 +54,6 @@ export class PubmedService {
     const translate = new Translate();
     const [translation] = await translate.translate(title, 'ru');
 
-    return `${title}\n📚 ${translation}`;
+    return `<b>${title}</b>\n📚 ${translation}`;
   }
 }
