@@ -11,10 +11,10 @@ export class MessageService {
   ) {}
 
   sendMessage(text: string) {
-    return this.bot.telegram.sendMessage(
+    return this.bot.telegram.sendPhoto(
       this.configService.get<string>('CHAT_ID'),
-      text,
-      { parse_mode: 'Markdown' },
+      { url: 'https://source.unsplash.com/collection/4415448/1600x900' },
+      { parse_mode: 'HTML', caption: text },
     );
   }
 }
